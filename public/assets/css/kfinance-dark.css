@@ -1,0 +1,67 @@
+/* kfinance-dark.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-bg: #121212;
+    --surface-bg: rgba(255, 255, 255, 0.05);
+    /* Glass effect base */
+    --surface-border: rgba(255, 255, 255, 0.1);
+
+    --text-main: #FFFFFF;
+    --text-muted: #A0A0A0;
+
+    --secondary-accent: #00F0FF;
+    /* Cyan */
+    --tertiary-ai: #8A2BE2;
+    /* Deep Violet for AI */
+    --success: #00E676;
+    /* Mint Green */
+    --danger: #FF4D4D;
+    /* Soft Crimson */
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Card Component */
+.glass-card {
+    background: var(--surface-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--surface-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Input Styling */
+.form-control-dark {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--surface-border);
+    color: var(--text-main);
+}
+
+.form-control-dark:focus {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: var(--secondary-accent);
+    box-shadow: 0 0 0 0.25rem rgba(0, 240, 255, 0.25);
+    color: var(--text-main);
+}
+
+/* High-End Button */
+.btn-neon {
+    background: transparent;
+    color: var(--secondary-accent);
+    border: 1px solid var(--secondary-accent);
+    transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+    background: var(--secondary-accent);
+    color: #000;
+    box-shadow: 0 0 15px var(--secondary-accent);
+}

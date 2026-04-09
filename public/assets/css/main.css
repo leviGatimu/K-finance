@@ -1,0 +1,176 @@
+/* ==========================================================================
+   K-Finance Global Design System (NGA-Inspired)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+    --brand-green: #00E676;
+    --brand-green-hover: #00c868;
+    --brand-navy-start: #1e293b;
+    --brand-navy-end: #0B132B;
+
+    --bg-light: #ffffff;
+    --bg-offwhite: #f8fafc;
+    --input-bg: #f1f5f9;
+
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-label: #475569;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* --- Global Typography & Brand --- */
+.brand-logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.brand-k {
+    color: var(--brand-green);
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-right: 2px;
+}
+
+.brand-dot {
+    color: var(--brand-green);
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+/* --- SaaS Form Inputs (No Borders, Gray Background) --- */
+.input-group-custom {
+    margin-bottom: 1.5rem;
+}
+
+.input-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-label);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.input-control {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.input-control:focus-within {
+    background-color: var(--bg-light);
+    border-color: var(--brand-green);
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.1);
+}
+
+.input-control input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.input-control input::placeholder {
+    color: #94a3b8;
+}
+
+/* --- Action Buttons --- */
+.btn-action {
+    background-color: var(--brand-green);
+    color: var(--brand-navy-end);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 230, 118, 0.2);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-action:hover {
+    background-color: var(--brand-green-hover);
+    transform: translateY(-2px);
+}
+
+/* --- Interactive Background Shapes --- */
+.shape {
+    position: absolute;
+    filter: blur(3px);
+    opacity: 0.4;
+    z-index: 0;
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* --- Animations --- */
+.shake {
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
