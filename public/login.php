@@ -18,14 +18,112 @@
             overflow-x: hidden;
         }
 
+        /* =========================================
+           ENTRANCE ANIMATIONS (KEYFRAMES)
+           ========================================= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Apply animations to elements */
+        .left-panel {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-icon-block {
+            width: 60px;
+            height: 60px;
+            background-color: #00E676;
+            border-radius: 18px;
+            /* Slightly softer corner */
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 230, 118, 0.3);
+
+            /* Center the icon */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            animation: fadeInUp 0.8s ease-out both;
+            animation-delay: 0.2s;
+        }
+
+        .hero-icon-block i {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .brand-logo {
+            animation: fadeInLeft 0.8s ease-out both;
+        }
+
+        .hero-title {
+            animation: fadeInUp 0.8s ease-out both;
+            animation-delay: 0.4s;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 0.8s ease-out both;
+            animation-delay: 0.6s;
+        }
+
+        .form-wrapper {
+            animation: fadeInUp 1s ease-out both;
+            animation-delay: 0.3s;
+        }
+
+        .input-group-custom:nth-child(1) {
+            animation: fadeInUp 0.8s ease-out both;
+            animation-delay: 0.5s;
+        }
+
+        .input-group-custom:nth-child(2) {
+            animation: fadeInUp 0.8s ease-out both;
+            animation-delay: 0.6s;
+        }
+
+        .btn-action {
+            animation: fadeInUp 0.8s ease-out both;
+            animation-delay: 0.7s;
+        }
+
+        /* =========================================
+           LAYOUT & STYLING
+           ========================================= */
         .split-layout {
             display: flex;
             min-height: 100vh;
         }
 
-        /* =========================================
-           LEFT PANEL: Dark Gradient & Typography 
-           ========================================= */
         .left-panel {
             width: 45%;
             background: linear-gradient(145deg, #1e293b 0%, #0B132B 100%);
@@ -36,7 +134,6 @@
             position: relative;
         }
 
-        /* The Custom K-Finance Logo */
         .brand-logo {
             font-size: 1.8rem;
             font-weight: 800;
@@ -48,7 +145,6 @@
 
         .brand-k {
             color: #00E676;
-            /* The requested Green K */
             font-size: 2.5rem;
             line-height: 1;
             margin-right: 2px;
@@ -56,7 +152,6 @@
 
         .brand-dot {
             color: #00E676;
-            /* The requested Green dot */
             font-size: 2.5rem;
             line-height: 1;
         }
@@ -66,7 +161,6 @@
             margin-bottom: auto;
         }
 
-        /* The Colored Block inspired by NGA */
         .hero-icon-block {
             width: 60px;
             height: 60px;
@@ -94,9 +188,6 @@
             max-width: 85%;
         }
 
-        /* =========================================
-           RIGHT PANEL: White, Floating Shapes, Form 
-           ========================================= */
         .right-panel {
             width: 55%;
             background-color: #ffffff;
@@ -107,7 +198,6 @@
             overflow: hidden;
         }
 
-        /* Interactive Floating Shapes Background */
         .shape {
             position: absolute;
             filter: blur(3px);
@@ -120,7 +210,6 @@
             width: 80px;
             height: 80px;
             background: #dcfce7;
-            /* Light green */
             border-radius: 20px;
             top: 15%;
             right: 15%;
@@ -131,7 +220,6 @@
             width: 60px;
             height: 60px;
             background: #e0e7ff;
-            /* Light blue/purple */
             border-radius: 50%;
             bottom: 20%;
             left: 10%;
@@ -142,7 +230,6 @@
             width: 40px;
             height: 40px;
             background: #fef08a;
-            /* Soft yellow */
             top: 40%;
             right: 5%;
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
@@ -150,16 +237,14 @@
         }
 
         @keyframes float {
-            0% {
+
+            0%,
+            100% {
                 transform: translateY(0px) rotate(0deg);
             }
 
             50% {
                 transform: translateY(-20px) rotate(10deg);
-            }
-
-            100% {
-                transform: translateY(0px) rotate(0deg);
             }
         }
 
@@ -168,7 +253,6 @@
             max-width: 420px;
             position: relative;
             z-index: 10;
-            /* Keeps form above the floating shapes */
         }
 
         .auth-header {
@@ -188,7 +272,6 @@
             font-size: 1rem;
         }
 
-        /* NGA Style Inputs: Gray background, no borders, clean */
         .input-group-custom {
             margin-bottom: 1.5rem;
         }
@@ -231,11 +314,6 @@
             margin-left: 10px;
         }
 
-        .input-control input::placeholder {
-            color: #94a3b8;
-        }
-
-        /* The Action Button */
         .btn-action {
             width: 100%;
             background-color: #00E676;
@@ -258,7 +336,6 @@
             transform: translateY(-2px);
         }
 
-        /* Error Shake Animation */
         .shake {
             animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
             border-color: #ef4444 !important;
@@ -289,7 +366,6 @@
             }
         }
 
-        /* Mobile Responsiveness */
         @media (max-width: 992px) {
             .left-panel {
                 display: none;
@@ -297,16 +373,6 @@
 
             .right-panel {
                 width: 100%;
-            }
-
-            .minimal-home-link {
-                display: block;
-                color: #0f172a;
-                top: 20px;
-                left: 20px;
-                position: absolute;
-                font-weight: bold;
-                font-size: 1.5rem;
             }
         }
     </style>
@@ -363,11 +429,6 @@
                     <button type="submit" class="btn-action" id="submitBtn">
                         Send Secure OTP <i class="bi bi-arrow-right ms-2"></i>
                     </button>
-
-                    <div class="text-center mt-4 text-muted" style="font-size: 0.85rem;">
-                        Simulation: Try submitting with an empty phone number to see the shake animation, or type a
-                        number to proceed.
-                    </div>
                 </form>
 
                 <form id="otpForm" style="display: none;">
@@ -377,11 +438,7 @@
                     </div>
 
                     <div class="input-group-custom">
-                        <div class="input-label">
-                            Enter 6-Digit Code
-                            <a href="#" class="text-success text-decoration-none text-lowercase"
-                                onclick="location.reload()" style="font-weight: 600;">Resend?</a>
-                        </div>
+                        <div class="input-label">Enter 6-Digit Code</div>
                         <div class="input-control">
                             <i class="bi bi-shield-lock text-muted"></i>
                             <input type="text" id="otpCode" placeholder="••••••" maxlength="6"
@@ -399,31 +456,90 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
+        // ==========================================
+        // PART 1: REQUEST THE OTP (Login Form)
+        // ==========================================
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
+            const fullName = document.getElementById('fullName').value;
             const phoneInput = document.getElementById('phoneNumber').value;
             const phoneContainer = document.getElementById('phoneContainer');
             const submitBtn = document.getElementById('submitBtn');
 
-            // Validation Failure: SHAKE ANIMATION
             if (phoneInput.trim() === '') {
                 phoneContainer.classList.add('shake');
-
-                // Remove class after animation completes so it can be triggered again
-                setTimeout(() => {
-                    phoneContainer.classList.remove('shake');
-                }, 500);
+                setTimeout(() => { phoneContainer.classList.remove('shake'); }, 500);
                 return;
             }
 
-            // Validation Success: Show OTP Form
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Processing...';
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Sending OTP...';
+            submitBtn.disabled = true;
 
-            setTimeout(() => {
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('otpForm').style.display = 'block';
-            }, 800); // Simulate network delay
+            try {
+                const response = await fetch('api/send_otp.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullName: fullName, phone: phoneInput })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('otpForm').style.display = 'block';
+                } else {
+                    alert("Error: " + result.message);
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Network Error:', error);
+                alert("A network error occurred. Please try again.");
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // ==========================================
+        // PART 2: VERIFY THE OTP (OTP Form)
+        // ==========================================
+        document.getElementById('otpForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Stop the page from reloading!
+
+            // We grab the phone number from the hidden first form, and the OTP from this form
+            const phoneInput = document.getElementById('phoneNumber').value;
+            const otpInput = document.getElementById('otpCode').value;
+            const submitBtn = this.querySelector('.btn-action');
+
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Verifying...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('api/verify_otp.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: phoneInput, otp: otpInput })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // IT WORKED! Redirect to the Dashboard
+                    window.location.href = 'dashboard.php';
+                } else {
+                    alert("Error: " + result.message);
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Network Error:', error);
+                alert("A network error occurred while verifying. Please try again.");
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
         });
     </script>
 
