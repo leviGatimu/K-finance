@@ -222,10 +222,12 @@
 
         .tx-amount.positive {
             color: #16a34a;
+            /* Keeps the income Green */
         }
 
         .tx-amount.negative {
-            color: var(--k-navy);
+            color: #ef4444;
+            /* Changes the expenses to Red */
         }
 
         /* --- SIDEBAR ANIMATION LOGIC --- */
@@ -374,7 +376,7 @@
             <div class="nav-menu">
                 <a href="#" class="nav-item active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
                 <a href="transactions.php" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transactions</a>
-                <a href="#" class="nav-item"><i class="bi bi-cpu"></i> AI Advisor</a>
+                <a href="ai_advisor.php" class="nav-item"><i class="bi bi-cpu"></i> AI Advisor</a>
                 <a href="#" class="nav-item"><i class="bi bi-pie-chart"></i> Analytics</a>
                 <a href="#" class="nav-item"><i class="bi bi-gear"></i> Settings</a>
 

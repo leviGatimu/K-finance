@@ -151,6 +151,14 @@ html {
     background-color: #fef2f2 !important;
 }
 
+.tx-amount.positive {
+    color: #16a34a;
+}
+
+.tx-amount.negative {
+    color: var(--k-navy);
+}
+
 @keyframes shake {
 
     10%,
