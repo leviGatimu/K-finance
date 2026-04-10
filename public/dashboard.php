@@ -270,6 +270,95 @@
                 padding: 1.5rem;
             }
         }
+
+        /* =========================================
+           LOAD-IN ANIMATIONS (STAGGERED)
+           ========================================= */
+        @keyframes fadeLift {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeSlideRight {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Animate Sidebar elements safely */
+        .brand-logo {
+            opacity: 0;
+            animation: fadeSlideRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .nav-menu {
+            opacity: 0;
+            animation: fadeSlideRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.1s;
+        }
+
+        /* Animate Main Content Header */
+        .top-header {
+            opacity: 0;
+            animation: fadeLift 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.1s;
+        }
+
+        /* Animate Grid Columns (Staggered cascading effect) */
+        .col-xl-8 {
+            opacity: 0;
+            animation: fadeLift 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .col-xl-4 {
+            opacity: 0;
+            animation: fadeLift 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.3s;
+        }
+
+        .col-lg-7 {
+            opacity: 0;
+            animation: fadeLift 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        .col-lg-5 {
+            opacity: 0;
+            animation: fadeLift 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.5s;
+        }
+
+        /* Animate Individual Transactions for extra polish */
+        .transaction-item {
+            opacity: 0;
+            animation: fadeLift 0.4s ease-out forwards;
+        }
+
+        .transaction-item:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .transaction-item:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+
+        .transaction-item:nth-child(3) {
+            animation-delay: 0.7s;
+        }
     </style>
 </head>
 
@@ -284,7 +373,7 @@
 
             <div class="nav-menu">
                 <a href="#" class="nav-item active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
-                <a href="#" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transactions</a>
+                <a href="transactions.php" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transactions</a>
                 <a href="#" class="nav-item"><i class="bi bi-cpu"></i> AI Advisor</a>
                 <a href="#" class="nav-item"><i class="bi bi-pie-chart"></i> Analytics</a>
                 <a href="#" class="nav-item"><i class="bi bi-gear"></i> Settings</a>
@@ -421,12 +510,8 @@
                         <h5 class="fw-800 m-0 mb-2">Weekly Spending</h5>
                         <p class="text-muted small">Visual breakdown of your expenses.</p>
 
-                        <div class="flex-grow-1 d-flex align-items-center justify-content-center bg-light rounded-3 mt-3 border border-dashed"
-                            style="min-height: 200px;">
-                            <div class="text-center text-muted">
-                                <i class="bi bi-bar-chart-fill fs-1 text-success opacity-50"></i>
-                                <p class="mt-2 fw-semibold">Chart.js Canvas Area</p>
-                            </div>
+                        <div class="flex-grow-1 mt-4 position-relative" style="min-height: 220px; width: 100%;">
+                            <canvas id="spendingChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -440,6 +525,85 @@
         document.getElementById('sidebarToggle').addEventListener('click', function () {
             // This toggles the 'sidebar-closed' class on the whole body
             document.body.classList.toggle('sidebar-closed');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Initialize the Weekly Spending Chart
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('spendingChart').getContext('2d');
+
+            // Create a beautiful green gradient for the bars
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, '#00E676'); // K-Finance Solid Green
+            gradient.addColorStop(1, 'rgba(0, 230, 118, 0.1)'); // Fades to transparent at the bottom
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    // The Days of the Week
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Spent',
+                        // SIMULATED DATA: This is what we will replace with real PHP database variables later
+                        data: [4500, 12000, 3200, 8500, 2100, 18000, 6000],
+                        backgroundColor: gradient,
+                        borderRadius: 8, // Soft rounded tops
+                        borderSkipped: false,
+                        barThickness: 24 // Sleek, modern bar width
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false // Hide the legend for a cleaner look
+                        },
+                        tooltip: {
+                            backgroundColor: '#0B132B', // Dark Navy tooltip
+                            padding: 12,
+                            titleFont: { size: 13, family: "'Inter', sans-serif" },
+                            bodyFont: { size: 14, weight: 'bold', family: "'Inter', sans-serif" },
+                            displayColors: false, // Hide the little color box in the tooltip
+                            callbacks: {
+                                label: function (context) {
+                                    // Add "RWF" to the tooltip hover
+                                    return context.parsed.y.toLocaleString() + ' RWF';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f1f5f9', // Very soft horizontal grid lines
+                                drawBorder: false, // Remove the axis line itself
+                            },
+                            ticks: {
+                                color: '#94a3b8',
+                                font: { family: "'Inter', sans-serif", size: 11 },
+                                callback: function (value) {
+                                    if (value === 0) return '0';
+                                    return (value / 1000) + 'k'; // Formats 10000 to "10k" for cleaner Y-axis
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false, // Hide vertical grid lines entirely
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#64748b',
+                                font: { family: "'Inter', sans-serif", size: 12, weight: '600' }
+                            }
+                        }
+                    }
+                }
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
